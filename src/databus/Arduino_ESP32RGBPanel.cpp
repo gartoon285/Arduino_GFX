@@ -76,7 +76,8 @@ uint16_t *Arduino_ESP32RGBPanel::getFrameBuffer(int16_t w, int16_t h)
       .bounce_buffer_size_px = _bounce_buffer_size_px,
 #endif
       .sram_trans_align = 8,
-      .psram_trans_align = 64,
+      // .psram_trans_align = 64,
+      .dma_burst_size =64,
       .hsync_gpio_num = _hsync,
       .vsync_gpio_num = _vsync,
       .de_gpio_num = _de,
@@ -154,6 +155,10 @@ uint16_t *Arduino_ESP32RGBPanel::getFrameBuffer(int16_t w, int16_t h)
 
   return ((uint16_t *)frame_buffer);
 #endif
+}
+
+bool Arduino_ESP32RGBPanel::register_cb(const esp_lcd_rgb_panel_event_callbacks_t *callbacks, void *user_ctx){
+  return esp_lcd_rgb_panel_register_event_callbacks(_panel_handle, callbacks,user_ctx)==ESP_OK;
 }
 
 #endif // #if defined(ESP32) && (CONFIG_IDF_TARGET_ESP32S3)

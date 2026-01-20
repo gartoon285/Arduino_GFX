@@ -77,6 +77,10 @@ bool Arduino_RGB_Display::begin(int32_t speed)
   return true;
 }
 
+bool Arduino_RGB_Display::register_cb(const esp_lcd_rgb_panel_event_callbacks_t *callbacks, void *user_ctx){
+  return _rgbpanel->register_cb(callbacks,user_ctx);
+}
+
 void Arduino_RGB_Display::writePixelPreclipped(int16_t x, int16_t y, uint16_t color)
 {
   int32_t y2 = y;

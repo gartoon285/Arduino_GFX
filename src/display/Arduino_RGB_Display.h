@@ -2461,8 +2461,9 @@ public:
         int16_t w, int16_t h, Arduino_ESP32RGBPanel *rgbpanel, uint8_t r = 0, bool auto_flush = true,
         Arduino_DataBus *bus = NULL, int8_t rst = GFX_NOT_DEFINED, const uint8_t *init_operations = NULL, size_t init_operations_len = GFX_NOT_DEFINED,
         uint8_t col_offset1 = 0, uint8_t row_offset1 = 0, uint8_t col_offset2 = 0, uint8_t row_offset2 = 0);
-
+    
     bool begin(int32_t speed = GFX_NOT_DEFINED) override;
+    bool register_cb(const esp_lcd_rgb_panel_event_callbacks_t *callbacks, void *user_ctx);
     void writePixelPreclipped(int16_t x, int16_t y, uint16_t color) override;
     void writeFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color) override;
     void writeFastVLineCore(int16_t x, int16_t y, int16_t h, uint16_t color);

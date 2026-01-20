@@ -121,6 +121,8 @@ public:
 
   uint16_t *getFrameBuffer(int16_t w, int16_t h);
 
+  bool register_cb(const esp_lcd_rgb_panel_event_callbacks_t *callbacks, void *user_ctx);
+
 protected:
 private:
   int32_t _speed;
